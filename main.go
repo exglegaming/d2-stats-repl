@@ -4,9 +4,14 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	godotenv.Load(".env")
+	key := os.Getenv("API_KEY")
+
 	fmt.Println("Welcome to Destiny REPL! A CLI tool to see your stats in Destiny 2!")
 	fmt.Println("===================================================================")
 	fmt.Println()
@@ -22,7 +27,8 @@ func main() {
 	fmt.Println()
 
 	cfg := &config{
-		name: player.Text(),
+		name:   player.Text(),
+		apiKey: key,
 	}
 	startRepl(cfg)
 }

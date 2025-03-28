@@ -8,7 +8,8 @@ import (
 )
 
 type config struct {
-	name string
+	name   string
+	apiKey string
 }
 
 func startRepl(cfg *config) {
@@ -59,6 +60,21 @@ func getCommands() map[string]cliCommand {
 			name:        "help",
 			description: "Displays a list of all commands available",
 			callback:    commandHelp,
+		},
+		"pve": {
+			name:        "pve",
+			description: "Displays your pve stats",
+			callback:    commandPVE,
+		},
+		"pvp": {
+			name:        "pvp",
+			description: "Displays your crucible stats",
+			callback:    commandPVP,
+		},
+		"trials": {
+			name:        "trials",
+			description: "See your Trials of Osiris stats",
+			callback:    commandTrials,
 		},
 		"exit": {
 			name:        "exit",
