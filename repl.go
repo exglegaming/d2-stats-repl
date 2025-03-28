@@ -8,9 +8,10 @@ import (
 )
 
 type config struct {
+	name string
 }
 
-func startREPL() {
+func startRepl(cfg *config) {
 	reader := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Print("D2 > ")
@@ -21,16 +22,14 @@ func startREPL() {
 		}
 
 		commandName := words[0]
-		/*
-			args := []string{}
-			if len(words) > 1 {
-				args = words[1:]
-			}
-		*/
+		args := []string{}
+		if len(words) > 1 {
+			args = words[1:]
+		}
 
 		command, exists := getCommands()[commandName]
 		if exists {
-			err := command.callback()
+			err := command.callback(cfg, args...)
 			if err != nil {
 				fmt.Println(err)
 			}
@@ -40,7 +39,6 @@ func startREPL() {
 			continue
 		}
 	}
-
 }
 
 func cleanInput(text string) []string {
@@ -52,7 +50,7 @@ func cleanInput(text string) []string {
 type cliCommand struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(*config, ...string) error
 }
 
 func getCommands() map[string]cliCommand {
