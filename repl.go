@@ -14,8 +14,16 @@ type config struct {
 
 func startRepl(cfg *config) {
 	reader := bufio.NewScanner(os.Stdin)
+
+	fmt.Println("Welcome to Destiny REPL! A CLI tool to see your stats in Destiny 2!")
+	fmt.Println("===================================================================")
+	fmt.Println()
+	fmt.Println("Please use the the 'player <bungie name>' command to begin.")
+	fmt.Println("===================================================================")
+	fmt.Println()
+
 	for {
-		fmt.Print("D2 > ")
+		fmt.Printf("%s > ", cfg.name)
 		reader.Scan()
 		words := cleanInput(reader.Text())
 		if len(words) == 0 {
@@ -60,6 +68,11 @@ func getCommands() map[string]cliCommand {
 			name:        "help",
 			description: "Displays a list of all commands available",
 			callback:    commandHelp,
+		},
+		"player": {
+			name:        "player <bungie name>",
+			description: "Set the Bungie name of the player you want to look up",
+			callback:    commandPlayer,
 		},
 		"pve": {
 			name:        "pve",
