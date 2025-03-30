@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func commandPVE(cfg *config, args ...string) error {
+func commandPVE(cfg *Config, args ...string) error {
 	fmt.Println("Work in progress")
 	return nil
 }

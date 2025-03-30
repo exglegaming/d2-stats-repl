@@ -1,0 +1,3 @@
+name := strings.Split(args[0], "#")
+	fmt.Println(name)
+	cfg.name = name[0]

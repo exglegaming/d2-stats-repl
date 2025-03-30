@@ -12,7 +12,7 @@ type config struct {
 	apiKey string
 }
 
-func startRepl(cfg *config) {
+func startRepl(cfg *Config) {
 	reader := bufio.NewScanner(os.Stdin)
 
 	fmt.Println("Welcome to Destiny REPL! A CLI tool to see your stats in Destiny 2!")
@@ -23,7 +23,7 @@ func startRepl(cfg *config) {
 	fmt.Println()
 
 	for {
-		fmt.Printf("%s > ", cfg.name)
+		fmt.Printf("%s#%d > ", cfg.CurrentPlayer.DisplayName, cfg.CurrentPlayer.BungieGlobalDisplayNameCode)
 		reader.Scan()
 		words := cleanInput(reader.Text())
 		if len(words) == 0 {
@@ -59,7 +59,7 @@ func cleanInput(text string) []string {
 type cliCommand struct {
 	name        string
 	description string
-	callback    func(*config, ...string) error
+	callback    func(*Config, ...string) error
 }
 
 func getCommands() map[string]cliCommand {
