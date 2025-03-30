@@ -10,18 +10,6 @@ import (
 	"strings"
 )
 
-// Api interactions
-type BungieNameRequest struct {
-	DisplayName     string `json:"displayName"`
-	DisplayNameCode int    `json:"displayNameCode"`
-}
-
-type BungieResponse struct {
-	Response    []BungiePlayer `json:"Response"`
-	ErrorCode   int            `json:"ErrorCode"`
-	ErrorStatus string         `json:"ErrorStatus"`
-}
-
 func commandPlayer(cfg *Config, args ...string) error {
 	if len(args) != 1 {
 		return fmt.Errorf("You must enter a Bungie name.\n")
@@ -80,6 +68,7 @@ func searchPlayerByBungieName(cfg *Config, name string, code int) (*BungiePlayer
 	// Set headers
 	req.Header.Set("X-API-Key", cfg.ApiKey)
 	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("User-Agent", cfg.UserAgent)
 
 	// Make the request
 	client := &http.Client{}

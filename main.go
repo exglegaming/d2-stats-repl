@@ -13,10 +13,12 @@ const (
 func main() {
 	godotenv.Load(".env")
 	key := os.Getenv("API_KEY")
+	agent := os.Getenv("USER_AGENT")
 
 	cfg := &Config{
 		ApiKey:          key,
 		ApiBaseURL:      baseURL,
+		UserAgent:       agent,
 		DefaultPlatform: -1,
 		CurrentPlayer: &BungiePlayer{
 			MembershipID:                "",

@@ -7,9 +7,28 @@ import (
 	"strings"
 )
 
-type config struct {
-	name   string
-	apiKey string
+// Config stores application configuration and state
+type Config struct {
+	ApiKey          string // API Configuration
+	ApiBaseURL      string
+	UserAgent       string
+	CurrentPlayer   *BungiePlayer // Current Session Data
+	Characters      map[string]Character
+	DefaultPlatform int    // User Preferences
+	OutputFormat    string // e.g., "text", "json", "table"
+	LastApiCall     int64  // timestamp of last API call (for rate limiting) // Application State
+	CacheTTL        int    // Time-to-live for cached data in seconds
+	ManifestPath    string // Cache paths
+	CachePath       string
+	Verbose         bool // Debug settings
+}
+
+// Character represents a Destiny character
+type Character struct {
+	CharacterID string
+	ClassType   int
+	Light       int
+	EmblemPath  string
 }
 
 func startRepl(cfg *Config) {
