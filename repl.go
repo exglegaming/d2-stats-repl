@@ -3,46 +3,21 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"github.com/exglegaming/d2-stats-repl/internal/api"
 	"os"
 	"strings"
 )
 
 // Config stores application configuration and state
 type Config struct {
-	ApiKey          string // API Configuration
-	ApiBaseURL      string
-	UserAgent       string
-	CurrentPlayer   *BungiePlayer // Current Session Data
-	Characters      map[string]Character
-	DefaultPlatform int    // User Preferences
-	OutputFormat    string // e.g., "text", "json", "table"
-	LastApiCall     int64  // timestamp of last API call (for rate limiting) // Application State
-	CacheTTL        int    // Time-to-live for cached data in seconds
-	ManifestPath    string // Cache paths
-	CachePath       string
-	Verbose         bool // Debug settings
-}
-
-// Character represents a Destiny character
-type Character struct {
-	CharacterID string
-	ClassType   int
-	Light       int
-	EmblemPath  string
+	apiConfig *api.ApiConfig
 }
 
 func startRepl(cfg *Config) {
 	reader := bufio.NewScanner(os.Stdin)
 
-	fmt.Println("Welcome to Destiny REPL! A CLI tool to see your stats in Destiny 2!")
-	fmt.Println("===================================================================")
-	fmt.Println()
-	fmt.Println("Please use the the 'player <bungie name>' command to begin.")
-	fmt.Println("===================================================================")
-	fmt.Println()
-
 	for {
-		fmt.Printf("%s#%d > ", cfg.CurrentPlayer.DisplayName, cfg.CurrentPlayer.BungieGlobalDisplayNameCode)
+		fmt.Printf("%s#%d > ", cfg.apiConfig.BungiePlayer.DisplayName, cfg.apiConfig.BungiePlayer.BungieGlobalDisplayNameCode)
 		reader.Scan()
 		words := cleanInput(reader.Text())
 		if len(words) == 0 {
@@ -64,6 +39,7 @@ func startRepl(cfg *Config) {
 			continue
 		} else {
 			fmt.Println("Unknown command. Please try again or use the 'help' command to see all commands.")
+			fmt.Println()
 			continue
 		}
 	}
@@ -90,7 +66,7 @@ func getCommands() map[string]cliCommand {
 		},
 		"player": {
 			name:        "player <bungie name>",
-			description: "Set the Bungie name of the player you want to look up",
+			description: "Allows you to change the target user of the stats you are looking for",
 			callback:    commandPlayer,
 		},
 		"pve": {
