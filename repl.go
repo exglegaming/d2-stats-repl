@@ -10,7 +10,7 @@ import (
 
 // Config stores application configuration and state
 type Config struct {
-	apiConfig *api.ApiConfig
+	apiConfig *api.Client
 }
 
 func startRepl(cfg *Config) {

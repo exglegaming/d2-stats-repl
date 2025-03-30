@@ -9,7 +9,7 @@ import (
 )
 
 // SearchPlayerByBungieName Helper function for API communication
-func (c *ApiConfig) SearchPlayerByBungieName(name string, code int) (*BungiePlayer, error) {
+func (c *Client) SearchPlayerByBungieName(name string, code int) (*BungiePlayer, error) {
 	// Create request body
 	reqBody := BungieNameRequest{
 		DisplayName:     name,

@@ -15,7 +15,7 @@ func main() {
 	agent := os.Getenv("USER_AGENT")
 
 	cfg := &Config{
-		apiConfig: &api.ApiConfig{
+		apiConfig: &api.Client{
 			ApiKey:    key,
 			UserAgent: agent,
 		},
