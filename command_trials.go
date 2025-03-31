@@ -10,6 +10,7 @@ func commandTrials(cfg *Config, args ...string) error {
 
 	cfg.apiConfig.StatsResponse = &stats
 
+	fmt.Println()
 	fmt.Println("===Trials of Osiris stats===")
 	fmt.Printf("Flawless Completions: %v\n", cfg.apiConfig.StatsResponse.Trials.FlawlessCompletions)
 	fmt.Printf("Wins: %v\n", cfg.apiConfig.StatsResponse.Trials.Wins)

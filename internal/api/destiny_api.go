@@ -48,6 +48,7 @@ type BungieStatsRequest struct {
 type StatsResponse struct {
 	Trials   *TrialsStats
 	Crucible *CrucibleStats
+	PvE      *PvEStats
 	RawJSON  json.RawMessage
 }
 
@@ -76,4 +77,9 @@ type CrucibleStats struct {
 	KillSpree       int     `json:"longestKillSpree"`
 	AverageLifespan int     `json:"averageLifespan"`
 	TimePlayed      int     `json:"secondsPlayed"`
+}
+
+type PvEStats struct {
+	TotalKills  int `json:"kills"`
+	TotalDeaths int `json:"deaths"`
 }

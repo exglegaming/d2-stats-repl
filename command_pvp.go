@@ -12,7 +12,7 @@ func commandPVP(cfg *Config, args ...string) error {
 
 	cfg.apiConfig.StatsResponse = &stats
 
-	fmt.Println("PvP stats:")
+	fmt.Println("===PvP Stats===")
 	fmt.Printf("Wins: %v\n", cfg.apiConfig.StatsResponse.Crucible.Wins)
 	fmt.Printf("Losses: %v\n", cfg.apiConfig.StatsResponse.Crucible.Losses)
 	fmt.Printf("KD: %.2f\n", cfg.apiConfig.StatsResponse.Crucible.KD)

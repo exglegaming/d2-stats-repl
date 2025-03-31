@@ -92,16 +92,23 @@ func (c *Client) SearchHistoricalStats() (StatsResponse, error) {
 
 		// Look for PvP data
 		if modeID == "allPvP" {
-			fmt.Println("Found PvP data!")
 			fmt.Println()
 			crucible := extractCrucibleStats(allTime)
 			statsResponse.Crucible = crucible
+		} else if modeID == "allPvE" { // Look for PvE data
+			fmt.Println()
+			pve := extractPvEStats(allTime)
+			statsResponse.PvE = pve
 		}
 	}
 
 	// Check if we found any stats
 	if statsResponse.Crucible == nil {
-		return StatsResponse{}, fmt.Errorf("no trials stats found")
+		return StatsResponse{}, fmt.Errorf("no PvP stats found")
+	}
+
+	if statsResponse.PvE == nil {
+		return StatsResponse{}, fmt.Errorf("no PvE stats found")
 	}
 
 	return statsResponse, nil

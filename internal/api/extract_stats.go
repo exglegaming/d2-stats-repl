@@ -18,6 +18,15 @@ func extractCrucibleStats(allTime map[string]interface{}) *CrucibleStats {
 	return stats
 }
 
+func extractPvEStats(allTime map[string]interface{}) *PvEStats {
+	stats := &PvEStats{}
+
+	// Extract each stat from the allTime data
+	stats.TotalKills = extractStatValue(allTime, "kills")
+	stats.TotalDeaths = extractStatValue(allTime, "deaths")
+	return stats
+}
+
 func extractStatValue(allTime map[string]interface{}, statName string) int {
 	stat, ok := allTime[statName].(map[string]interface{})
 	if !ok {
