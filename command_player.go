@@ -33,7 +33,6 @@ func commandPlayer(cfg *Config, args ...string) error {
 	}
 
 	// Store player info in the config
-	//cfg.apiConfig.BungiePlayer = player
 	fmt.Printf("Player found: %s#%d\n",
 		cfg.apiConfig.BungiePlayer.DisplayName,
 		cfg.apiConfig.BungiePlayer.BungieGlobalDisplayNameCode)

@@ -13,6 +13,7 @@ type Client struct {
 	BungieResponse    *BungieResponse
 	BungiePlayer      *BungiePlayer
 	StatsResponse     *StatsResponse
+	CharacterIDs      []string
 }
 
 // BungieNameRequest Api interactions

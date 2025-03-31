@@ -37,5 +37,7 @@ func main() {
 		log.Fatal(err)
 	}
 
+	go cfg.apiConfig.FetchCharacterIDs()
+
 	startRepl(cfg)
 }

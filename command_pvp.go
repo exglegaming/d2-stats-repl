@@ -12,11 +12,11 @@ func commandPVP(cfg *Config, args ...string) error {
 
 	cfg.apiConfig.StatsResponse = &stats
 
-	fmt.Println("Crucible stats:")
+	fmt.Println("PvP stats:")
 	fmt.Printf("Wins: %v\n", cfg.apiConfig.StatsResponse.Crucible.Wins)
 	fmt.Printf("Losses: %v\n", cfg.apiConfig.StatsResponse.Crucible.Losses)
 	fmt.Printf("KD: %.2f\n", cfg.apiConfig.StatsResponse.Crucible.KD)
-	fmt.Printf("KDA: %v\n", cfg.apiConfig.StatsResponse.Crucible.KDA)
+	fmt.Printf("KDA: %.2f\n", cfg.apiConfig.StatsResponse.Crucible.KDA)
 	fmt.Printf("Total Kills: %v\n", cfg.apiConfig.StatsResponse.Crucible.TotalKills)
 	fmt.Printf("Total Deaths: %v\n", cfg.apiConfig.StatsResponse.Crucible.TotalDeaths)
 	fmt.Printf("Total Assits: %v\n", cfg.apiConfig.StatsResponse.Crucible.TotalAssists)
