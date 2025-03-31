@@ -7,7 +7,7 @@ this is mainly used as my first personal project and may grow from here.
 
 To install and use this CLI tool use the following below
 ``` bash
-go install https://github.com/exglegaming/d2-stats-repl.git
+go install github.com/exglegaming/d2-stats-repl@latest
 ```
 
 # Usage:
