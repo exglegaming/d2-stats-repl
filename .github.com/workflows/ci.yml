@@ -26,8 +26,8 @@ jobs:
 
       - name: Run tests
         env:
-          BUNGIE_API_KEY: ${{ secrets.BUNGIE_API_KEY }}
-          BUNGIE_USER_AGENT: ${{ secrets.BUNGIE_USER_AGENT }}
+          BUNGIE_API_KEY: ${{ secrets.API_KEY }}
+          BUNGIE_USER_AGENT: ${{ secrets.USER_AGENT }}
         run: go test -v ./...
 
   build:
